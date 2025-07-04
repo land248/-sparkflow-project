@@ -7,5 +7,5 @@
   command = "npm install && npm run build"
 
 # Optionnel : si tu as des Functions Netlify
-  [functions]
-  directory = "../netlify/functions"
+ [functions]
+  directory = "sparkflow-ui/netlify/functions"
