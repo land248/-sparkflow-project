@@ -1,0 +1,11 @@
+# netlify.toml
+
+[build]
+  # On passe dans le dossier sparkflow-ui avant d'installer et builder
+  base    = "sparkflow-ui"
+  publish = "dist"
+  command = "npm install && npm run build"
+
+# Optionnel : si tu as des Functions Netlify
+# [functions]
+#   directory = "netlify/functions"
