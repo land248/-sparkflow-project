@@ -1,2 +1,5 @@
 # Environnement local (ne pas versionner)
 sparkflow-ui/.env
+
+# Local Netlify folder
+.netlify
