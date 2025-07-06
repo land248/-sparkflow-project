@@ -1,0 +1,10 @@
+# netlify.toml
+
+[build]
+  # On part de la racine, pas de base =
+  command = "npm install --prefix sparkflow-ui && npm run build --prefix sparkflow-ui"
+  publish = "sparkflow-ui/dist"
+
+[functions]
+  # Ton dossier root-level
+  directory = "netlify/functions"
