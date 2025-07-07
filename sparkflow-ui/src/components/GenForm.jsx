@@ -4,8 +4,9 @@ import { Sparkles, Video, Send, FileText, LogOut } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
+const APP_URL = import.meta.env.VITE_APP_URL
+console.log("🔀 REDIRECT_TO =", APP_URL)
 export default function GenForm() {
   // ─── Auth & User ────────────────────────────────────────────────
   const [user, setUser] = useState(null);
@@ -22,7 +23,7 @@ export default function GenForm() {
     if (!email) return;
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { redirectTo: window.location.origin }
+      options: { redirectTo: APP_URL }
     });
     if (error) alert(error.message);
     else alert("🔗 Vérifiez votre boîte mail pour vous connecter !");
