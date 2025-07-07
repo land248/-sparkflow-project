@@ -8,7 +8,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 const APP_URL = import.meta.env.VITE_APP_URL
 console.log("🔀 REDIRECT_TO =", APP_URL)
 export default function GenForm() {
-  // ─── Auth & User ────────────────────────────────────────────────
+  // ─── Auth & User ──────────────────────────────────────────
   const [user, setUser] = useState(null);
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
