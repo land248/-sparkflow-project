@@ -1,10 +1,17 @@
-# netlify.toml
-
 [build]
-  # On part de la racine, pas de base =
-  command = "npm install --prefix sparkflow-ui && npm run build --prefix sparkflow-ui"
-  publish = "sparkflow-ui/dist"
+  publish    = "sparkflow-ui/dist"
+  functions  = "netlify/functions"
+  command    = "npm install --prefix sparkflow-ui && npm run build --prefix sparkflow-ui"
+
+[dev]
+  port       = 8888
+  functions  = "netlify/functions"
+  publish    = "sparkflow-ui/dist"
 
 [functions]
-  # Ton dossier root-level
-  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# On désactive tout parsing auto du body pour Stripe signature
+[functions."stripe-webhook"]
+  parse = false
+  external_node_modules = ["stripe", "@supabase/supabase-js"]
