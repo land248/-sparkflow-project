@@ -1,12 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-console.log('SUPABASE_URL :', import.meta.env.VITE_SUPABASE_URL);
-console.log('SUPABASE_KEY :', import.meta.env.VITE_SUPABASE_ANON_KEY);
+// sparkflow-ui/src/main.jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { ThemeProvider } from "./lib/ThemeContext";
+import "./index.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ThemeProvider>
     <App />
-  </StrictMode>,
-)
+  </ThemeProvider>
+);

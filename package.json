@@ -18,7 +18,12 @@
   "homepage": "https://github.com/land248/-sparkflow-project#readme",
   "description": "",
   "dependencies": {
-    "@supabase/supabase-js": "^2.50.3",
+    "@sentry/node": "^9.37.0",
+    "@supabase/auth-helpers-react": "^0.5.0",
+    "@supabase/supabase-js": "^2.50.4",
+    "dotenv": "^17.2.0",
+    "openai": "^5.8.3",
+    "react-router-dom": "^7.6.3",
     "stripe": "^18.3.0"
   }
 }

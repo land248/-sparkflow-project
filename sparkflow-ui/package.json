@@ -12,10 +12,13 @@
   "dependencies": {
     "@stripe/stripe-js": "^7.4.0",
     "@supabase/supabase-js": "^2.50.2",
+    "framer-motion": "^12.23.3",
     "lucide-react": "^0.525.0",
     "openai": "^5.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3",
+    "react-toastify": "^11.0.5",
     "stripe": "^18.3.0"
   },
   "devDependencies": {

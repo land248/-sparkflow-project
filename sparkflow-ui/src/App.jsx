@@ -1,17 +1,25 @@
-// src/App.jsx
-import React from 'react';
-import './index.css';         
-import GenForm from './components/GenForm';
+// sparkflow-ui/src/App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import React from "react";
+import { useSession } from "@supabase/auth-helpers-react";
+import AuthForm from "./components/AuthForm";
+import GenForm from "./components/GenForm";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
-function App() {
+export default function App() {
+  const session = useSession();
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-2xl p-4">
-        <GenForm />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Header/>
+      <main className="flex-grow p-4">
+        <Routes>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/app" element={session ? <GenForm/> : <AuthForm/>}/>
+        </Routes>
+      </main>
+      <Footer/>
+    </BrowserRouter>
   );
 }
-
-export default App;
-

@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    --bg: #ffffff; --text: #000000;
 }
 
 a {
@@ -23,6 +24,8 @@ a:hover {
 }
 
 body {
+   background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   display: flex;
   place-items: center;
@@ -33,6 +36,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+.dark {
+  --bg: #1a202c; --text: #edf2f7;
 }
 
 button {
