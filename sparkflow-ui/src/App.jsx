@@ -18,9 +18,9 @@ export default function App() {
       <main className="flex-grow p-4">
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route 
-            path="/app" 
-            element={session ? <GenForm /> : <Navigate to="/" />} 
+          <Route
+            path="/app"
+            element={session ? <GenForm /> : <Navigate to="/" />}
           />
           {/* On peut ajouter auth callback si nécessaire */}
           <Route path="*" element={<Navigate to="/" />} />

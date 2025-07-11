@@ -11,7 +11,7 @@ Sentry.init({ dsn: process.env.SENTRY_DSN });
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY,
-  { auth: { persistSession: false } }
+  { auth: { persistSession: false } },
 );
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -52,8 +52,14 @@ exports.handler = Sentry.AWSLambda.wrapHandler(async (event) => {
     completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: "Vous générez des scripts courts et punchy." },
-        { role: "user", content: `Écris un script ${platform} pour : ${prompt}` }
+        {
+          role: "system",
+          content: "Vous générez des scripts courts et punchy.",
+        },
+        {
+          role: "user",
+          content: `Écris un script ${platform} pour : ${prompt}`,
+        },
       ],
     });
   } catch (err) {
@@ -75,12 +81,12 @@ exports.handler = Sentry.AWSLambda.wrapHandler(async (event) => {
     console.error(errUpdate);
     return { statusCode: 500, body: "Database update error" };
   }
- // **Nouvelle étape** : compter les scripts du jour
+  // **Nouvelle étape** : compter les scripts du jour
   const { count } = await supabase
     .from("scripts")
     .select("id", { count: "exact", head: true })
     .eq("user_id", userId)
-    .gte("created_at", new Date().toISOString().slice(0,10));  // ISO date début du jour
+    .gte("created_at", new Date().toISOString().slice(0, 10)); // ISO date début du jour
 
   if (count >= 3) {
     return { statusCode: 429, body: "Daily free quota reached" };
@@ -94,6 +100,6 @@ exports.handler = Sentry.AWSLambda.wrapHandler(async (event) => {
   // 4) Réponse
   return {
     statusCode: 200,
-    body: JSON.stringify({ script })
+    body: JSON.stringify({ script }),
   };
 });
