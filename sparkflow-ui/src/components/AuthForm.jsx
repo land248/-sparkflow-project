@@ -30,7 +30,9 @@ export default function AuthForm() {
         transition={{ duration: 0.3 }}
         className="max-w-sm mx-auto p-6 bg-white dark:bg-gray-700 rounded-xl shadow space-y-4"
       >
-        <h2 className="text-xl font-semibold text-center text-gray-800 dark:text-gray-100">Connexion</h2>
+        <h2 className="text-xl font-semibold text-center text-gray-800 dark:text-gray-100">
+          Connexion
+        </h2>
         <input
           type="email"
           placeholder="Votre email"

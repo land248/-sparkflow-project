@@ -13,7 +13,7 @@ const history = createBrowserHistory();
 
 async function handleMagicLink() {
   const { data, error } = await supabase.auth.getSessionFromUrl({
-    redirectTo: window.location.origin + "/app"
+    redirectTo: window.location.origin + "/app",
   });
   // si on a une session valide, on navigue vers /app
   if (data?.session) {
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter history={history}>
       <App />
     </BrowserRouter>
-  </ThemeProvider>
+  </ThemeProvider>,
 );
