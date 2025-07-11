@@ -53,7 +53,9 @@ export default function GenForm() {
         body: JSON.stringify({ prompt, platform, userId: user.id }),
       });
       if (res.status === 402) throw new Error("Not enough credits");
-      if (res.status === 429) throw new Error("Quota gratuit atteint (3/jour).");
+      if (res.status === 429) {
+        throw new Error("Quota gratuit atteint (3/jour).");
+      }
       if (!res.ok) throw new Error(await res.text());
 
       const { script: newScript } = await res.json();
@@ -69,10 +71,17 @@ export default function GenForm() {
       setCredits(p.credits);
 
       // Mise à jour locale de l'historique
-      setHistory((prev) => [
-        { prompt, platform, script: newScript, created_at: new Date().toISOString() },
-        ...prev,
-      ].slice(0, 5));
+      setHistory((prev) =>
+        [
+          {
+            prompt,
+            platform,
+            script: newScript,
+            created_at: new Date().toISOString(),
+          },
+          ...prev,
+        ].slice(0, 5),
+      );
     } catch (err) {
       console.error(err);
       if (err.message.includes("Quota")) {
@@ -88,7 +97,11 @@ export default function GenForm() {
   };
 
   if (!session) {
-    return <p className="text-center text-gray-700 dark:text-gray-300">Connectez‑vous pour générer un script.</p>;
+    return (
+      <p className="text-center text-gray-700 dark:text-gray-300">
+        Connectez‑vous pour générer un script.
+      </p>
+    );
   }
 
   return (
@@ -101,7 +114,8 @@ export default function GenForm() {
         className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow space-y-4"
       >
         <p className="text-gray-800 dark:text-gray-100">
-          <strong>Crédits restants : </strong>{credits ?? "…"}
+          <strong>Crédits restants : </strong>
+          {credits ?? "…"}
         </p>
 
         <textarea
@@ -155,7 +169,9 @@ export default function GenForm() {
                   transition={{ duration: 0.2 }}
                   className="p-2 bg-gray-100 dark:bg-gray-800 rounded text-gray-900 dark:text-gray-100"
                 >
-                  <p className="italic text-sm">{h.prompt} – {h.platform}</p>
+                  <p className="italic text-sm">
+                    {h.prompt} – {h.platform}
+                  </p>
                   <pre className="whitespace-pre-wrap">{h.script}</pre>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {new Date(h.created_at).toLocaleString()}
